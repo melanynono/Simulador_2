@@ -79,21 +79,63 @@
     }
 
     .aprobado {
-      background: #d4edda;
+      background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
       color: #155724;
-      padding: 15px;
-      border-radius: 5px;
+      padding: 25px 30px;
+      border-radius: 15px;
       font-weight: bold;
-      margin-top: 15px;
+      margin-top: 20px;
+      border: 3px solid #28a745;
+      box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .aprobado::before {
+      content: "✓";
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      font-size: 150px;
+      color: rgba(40, 167, 69, 0.1);
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .aprobado:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(40, 167, 69, 0.4);
     }
 
     .rechazado {
-      background: #f8d7da;
+      background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
       color: #721c24;
-      padding: 15px;
-      border-radius: 5px;
+      padding: 25px 30px;
+      border-radius: 15px;
       font-weight: bold;
-      margin-top: 15px;
+      margin-top: 20px;
+      border: 3px solid #dc3545;
+      box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .rechazado::before {
+      content: "✕";
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      font-size: 150px;
+      color: rgba(220, 53, 69, 0.1);
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .rechazado:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(220, 53, 69, 0.4);
     }
 
     .card {
@@ -102,21 +144,40 @@
       border-radius: 5px;
       margin-top: 10px;
     }
-  
-.aprobado {
-    color: green;
-    font-weight: bold;
-    border: 2px solid green;
-    background-color: #d4edda;
-    padding: 10px;
-    margin-top: 10px;
-}
+    /* Estilos para el contenido del resultado */
+    .aprobado br {
+      content: "";
+      display: block;
+      margin: 10px 0;
+    }
 
-.rechazado {
-    color: red;
-    font-weight: bold;
-    border: 2px solid red;
-    background-color: #f8d7da;
-    padding: 10px;
-    margin-top: 10px;
-}
+    .rechazado br {
+      content: "";
+      display: block;
+      margin: 10px 0;
+    }
+
+    /* Efecto de animación al aparecer */
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .aprobado, .rechazado {
+      animation: slideInUp 0.5s ease-out;
+      font-size: 16px;
+      line-height: 1.8;
+      letter-spacing: 0.3px;
+    }
+
+    /* Mejora visual para el texto del resultado */
+    #resultadoCredito {
+      position: relative;
+      z-index: 1;
+    }
