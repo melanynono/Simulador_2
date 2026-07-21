@@ -15,6 +15,7 @@
 function ocultarSecciones() {
     document.getElementById("parametros").classList.remove("activa");
     document.getElementById("clientes").classList.remove("activa");
+    document.getElementById("creditos").classList.remove("activa");
 }
 
 function mostrarSeccion(id) {
