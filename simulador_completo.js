@@ -1,15 +1,15 @@
 
-  let clientes = [];
-  let creditos = [];
+let clientes = [];
+let creditos = [];
 
-  let tasaInteres = 15;
-  let clienteSeleccionado = null;
-  let cuotaCalculada = 0;
-  let montoCalculado = 0;
-  let plazoCalculado = 0;
-  let creditoAprobado = false;
+let tasaInteres = 15;
+let clienteSeleccionado = null;
+let clienteCredito = null;
+let cuotaCalculada = 0;
+let montoCalculado = 0;
+let plazoCalculado = 0;
+let creditoAprobado = false;
 
-  
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
 
 function ocultarSecciones() {
@@ -119,6 +119,7 @@ function buscarClienteCredito() {
     let cliente = buscarCliente(cedula);
 
     if (cliente != null) {
+        clienteCredito = cliente;
         let contenido = "";
 
         contenido += "<h3>Datos del Cliente</h3>";
@@ -130,7 +131,54 @@ function buscarClienteCredito() {
 
         document.getElementById("datosClienteCredito").innerHTML = contenido;
     } else {
+        clienteCredito = null;
         document.getElementById("datosClienteCredito").innerHTML =
             "<p>Cliente no encontrado.</p>";
     }
+}
+
+function calcularCredito() {
+
+    if (clienteCredito == null) {
+        document.getElementById("resultadoCredito").innerHTML =
+            "Primero debe buscar un cliente.";
+        return;
+    }
+
+    let monto = recuperarFloat("montoCredito");
+    let plazo = recuperarInt("plazoCredito");
+
+    let disponible = calcularDisponible(
+        clienteCredito.ingresos,
+        clienteCredito.egresos
+    );
+
+    let capacidadPago = calcularCapacidadPago(disponible);
+
+    let interes = calcularInteresSimple(
+        monto,
+        tasaInteres,
+        plazo
+    );
+
+    let totalPagar = calcularTotalPagar(
+        monto,
+        interes
+    );
+
+    let cuotaMensual = calcularCuotaMensual(
+        totalPagar,
+        plazo
+    );
+
+    let aprobado = aprobarCredito(
+        capacidadPago,
+        cuotaMensual
+    );
+
+    document.getElementById("resultadoCredito").innerHTML =
+        "Capacidad de pago: " + capacidadPago + "<br>" +
+        "Total a pagar: " + totalPagar + "<br>" +
+        "Cuota mensual: " + cuotaMensual + "<br>" +
+        "RESULTADO: " + (aprobado ? "APROBADO" : "RECHAZADO");
 }
