@@ -176,9 +176,17 @@ function calcularCredito() {
         cuotaMensual
     );
 
-    document.getElementById("resultadoCredito").innerHTML =
-        "Capacidad de pago: " + capacidadPago + "<br>" +
-        "Total a pagar: " + totalPagar + "<br>" +
-        "Cuota mensual: " + cuotaMensual + "<br>" +
-        "RESULTADO: " + (aprobado ? "APROBADO" : "RECHAZADO");
+    let resultado = document.getElementById("resultadoCredito");
+
+resultado.innerHTML =
+    "Capacidad de pago: " + capacidadPago + "<br>" +
+    "Total a pagar: " + totalPagar + "<br>" +
+    "Cuota mensual: " + cuotaMensual + "<br>" +
+    "RESULTADO: " + (aprobado ? "APROBADO" : "RECHAZADO");
+
+if (aprobado) {
+    resultado.className = "aprobado";
+} else {
+    resultado.className = "rechazado";
+}
 }
