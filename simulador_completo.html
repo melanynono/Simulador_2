@@ -41,7 +41,26 @@
 
   <br>
 
-  <section id="creditos">
+  <button onclick="guardarCliente()" >Guardar cliente</button>
+  <button onclick="limpiar()">Limpiar</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cédula</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Ingresos</th>
+        <th>Egresos</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tablaClientes">
+    </tbody>
+  </table>
+</section>
+
+<section id="creditos">
   <h2>Solicitar Crédito</h2>
 
   <input type="text" id="buscarCedulaCredito">
@@ -61,25 +80,6 @@
   <button id="btnSolicitarCredito" onclick="solicitarCredito()" disabled>
     Solicitar crédito
   </button>
-</section>
-
-  <button onclick="guardarCliente()" >Guardar cliente</button>
-  <button onclick="limpiar()">Limpiar</button>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Cédula</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Ingresos</th>
-        <th>Egresos</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody id="tablaClientes">
-    </tbody>
-  </table>
 </section>
 
 
