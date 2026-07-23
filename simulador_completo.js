@@ -251,19 +251,30 @@ function pintarCreditos(creditos) {
 
     let contenido = "";
 
-    for (let i = 0; i < creditos.length; i++) {
+    if (creditos.length == 0) {
+        contenido = `
+        <tr>
+            <td colspan="7">
+                No existen créditos registrados
+            </td>
+        </tr>`;
+    } 
+    else {
 
-        let credito = creditos[i];
+        for (let i = 0; i < creditos.length; i++) {
 
-        contenido += "<tr>";
-        contenido += "<td>" + credito.cedula + "</td>";
-        contenido += "<td>" + credito.nombre + "</td>";
-        contenido += "<td>" + credito.apellido + "</td>";
-        contenido += "<td>" + credito.monto + "</td>";
-        contenido += "<td>" + credito.tasa + "%</td>";
-        contenido += "<td>" + credito.plazo + " años</td>";
-        contenido += "<td>" + credito.cuota + "</td>";
-        contenido += "</tr>";
+            let credito = creditos[i];
+
+            contenido += "<tr>";
+            contenido += "<td>" + credito.cedula + "</td>";
+            contenido += "<td>" + credito.nombre + "</td>";
+            contenido += "<td>" + credito.apellido + "</td>";
+            contenido += "<td>" + credito.monto + "</td>";
+            contenido += "<td>" + credito.tasa + "%</td>";
+            contenido += "<td>" + credito.plazo + " años</td>";
+            contenido += "<td>" + credito.cuota + "</td>";
+            contenido += "</tr>";
+        }
     }
 
     document.getElementById("tablaCreditos").innerHTML = contenido;
