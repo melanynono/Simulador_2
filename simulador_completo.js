@@ -102,6 +102,21 @@ function buscarCliente(cedula) {
     return null;
 }
 
+function buscarCreditos(cedula) {
+
+    let creditosCliente = [];
+
+    for (let i = 0; i < creditos.length; i++) {
+
+        if (creditos[i].cedula == cedula) {
+            creditosCliente.push(creditos[i]);
+        }
+
+    }
+
+    return creditosCliente;
+}
+
 function seleccionarCliente(cedula) {
     clienteSeleccionado = buscarCliente(cedula);
 
@@ -232,13 +247,13 @@ function asignarCredito() {
     
     
 
-function pintarCreditos(lista) {
+function pintarCreditos(creditos) {
 
     let contenido = "";
 
-    for (let i = 0; i < lista.length; i++) {
+    for (let i = 0; i < creditos.length; i++) {
 
-        let credito = lista[i];
+        let credito = creditos[i];
 
         contenido += "<tr>";
         contenido += "<td>" + credito.cedula + "</td>";
@@ -252,4 +267,13 @@ function pintarCreditos(lista) {
     }
 
     document.getElementById("tablaCreditos").innerHTML = contenido;
+}
+
+function buscarCreditosCliente() {
+
+    let cedula = recuperaraTexto("buscarCedulaListado");
+    let listaCreditos = buscarCreditos(cedula);
+
+    pintarCreditos(listaCreditos);
+
 }
