@@ -185,6 +185,11 @@ function calcularCredito() {
         capacidadPago,
         cuotaMensual
     );
+        cuotaCalculada = cuotaMensual;
+        montoCalculado = monto;
+        plazoCalculado = plazo;
+        creditoAprobado = aprobado;
+    
 
     let resultado = document.getElementById("resultadoCredito");
 
@@ -196,7 +201,26 @@ resultado.innerHTML =
 
 if (aprobado) {
     resultado.className = "aprobado";
+    document.getElementById("btnAsignarCredito").disabled = false;
 } else {
     resultado.className = "rechazado";
+    document.getElementById("btnAsignarCredito").disabled = true;
 }
+}
+
+function asignarCredito() {
+
+    let credito = {
+        cedula: clienteCredito.cedula,
+        nombre: clienteCredito.nombre,
+        apellido: clienteCredito.apellido,
+        monto: montoCalculado,
+        tasa: tasaInteres,
+        plazo: plazoCalculado,
+        cuota: cuotaCalculada
+    };
+
+    creditos.push(credito);
+
+    alert("Crédito asignado correctamente");
 }
