@@ -16,7 +16,9 @@ function ocultarSecciones() {
     document.getElementById("parametros").classList.remove("activa");
     document.getElementById("clientes").classList.remove("activa");
     document.getElementById("creditos").classList.remove("activa");
+    document.getElementById("listaCreditos").classList.remove("activa");
     document.getElementById("contacto").classList.remove("activa");
+    
 }
 
 function mostrarSeccion(id) {
@@ -221,6 +223,33 @@ function asignarCredito() {
     };
 
     creditos.push(credito);
+    pintarCreditos(creditos);
+    document.getElementById("btnAsignarCredito").disabled = true;
 
     alert("Crédito asignado correctamente");
+}
+
+    
+    
+
+function pintarCreditos(lista) {
+
+    let contenido = "";
+
+    for (let i = 0; i < lista.length; i++) {
+
+        let credito = lista[i];
+
+        contenido += "<tr>";
+        contenido += "<td>" + credito.cedula + "</td>";
+        contenido += "<td>" + credito.nombre + "</td>";
+        contenido += "<td>" + credito.apellido + "</td>";
+        contenido += "<td>" + credito.monto + "</td>";
+        contenido += "<td>" + credito.tasa + "%</td>";
+        contenido += "<td>" + credito.plazo + " años</td>";
+        contenido += "<td>" + credito.cuota + "</td>";
+        contenido += "</tr>";
+    }
+
+    document.getElementById("tablaCreditos").innerHTML = contenido;
 }
