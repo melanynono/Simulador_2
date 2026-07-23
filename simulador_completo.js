@@ -16,6 +16,7 @@ function ocultarSecciones() {
     document.getElementById("parametros").classList.remove("activa");
     document.getElementById("clientes").classList.remove("activa");
     document.getElementById("creditos").classList.remove("activa");
+    document.getElementById("contacto").classList.remove("activa");
 }
 
 function mostrarSeccion(id) {
@@ -40,22 +41,26 @@ function guardarCliente() {
     let apellido = recuperaraTexto("apellido");
     let ingresos = recuperarFloat("ingresos");
     let egresos = recuperarFloat("egresos");
+    let correo = recuperaraTexto("correo");
 
-  if (clienteSeleccionado == null) {
+
+    if (clienteSeleccionado == null) {
     let cliente = {
         cedula: cedula,
         nombre: nombre,
         apellido: apellido,
         ingresos: ingresos,
-        egresos: egresos
+        egresos: egresos,
+        correo: correo
     };
 
     clientes.push(cliente);
-  } else {
+    } else {
         clienteSeleccionado.nombre = nombre;
         clienteSeleccionado.apellido = apellido;
         clienteSeleccionado.ingresos = ingresos;
         clienteSeleccionado.egresos = egresos;
+        clienteSeleccionado.correo = correo;
 
         clienteSeleccionado = null;
     }
@@ -76,6 +81,8 @@ function pintarClientes() {
         contenido += "<td>" + cliente.apellido + "</td>";
         contenido += "<td>" + cliente.ingresos + "</td>";
         contenido += "<td>" + cliente.egresos + "</td>";
+        contenido += "<td>" + cliente.correo + "</td>";
+
         contenido += "<td><button onclick=\"seleccionarCliente('" + cliente.cedula + "')\">Actualizar</button></td>";
         contenido += "</tr>";
     }
@@ -101,6 +108,7 @@ function seleccionarCliente(cedula) {
     mostrarTextoEnCaja("apellido", clienteSeleccionado.apellido);
     mostrarTextoEnCaja("ingresos", clienteSeleccionado.ingresos);
     mostrarTextoEnCaja("egresos", clienteSeleccionado.egresos);
+    mostrarTextoEnCaja("correo", clienteSeleccionado.correo);
 
 }
 
@@ -110,6 +118,7 @@ function limpiar() {
     mostrarTextoEnCaja("apellido", "");
     mostrarTextoEnCaja("ingresos", "");
     mostrarTextoEnCaja("egresos", "");
+    mostrarTextoEnCaja("correo", "");
 
 }
 
@@ -128,6 +137,7 @@ function buscarClienteCredito() {
         contenido += "<p><strong>Apellido:</strong> " + cliente.apellido + "</p>";
         contenido += "<p><strong>Ingresos:</strong> " + cliente.ingresos + "</p>";
         contenido += "<p><strong>Egresos:</strong> " + cliente.egresos + "</p>";
+        contenido += "<p><strong>Correo:</strong> " + cliente.correo + "</p>";
 
         document.getElementById("datosClienteCredito").innerHTML = contenido;
     } else {
