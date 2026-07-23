@@ -212,8 +212,8 @@ function calcularCredito() {
 
 resultado.innerHTML =
     "Capacidad de pago: " + capacidadPago + "<br>" +
-    "Total a pagar: " + totalPagar + "<br>" +
-    "Cuota mensual: " + cuotaMensual + "<br>" +
+    "Total a pagar: " + totalPagar.toFixed(2) + "<br>" +
+    "Cuota mensual: " + cuotaMensual.toFixed(2) + "<br>" +
     "RESULTADO: " + (aprobado ? "APROBADO" : "RECHAZADO");
 
 if (aprobado) {
@@ -272,7 +272,7 @@ function pintarCreditos(creditos) {
             contenido += "<td>" + credito.monto + "</td>";
             contenido += "<td>" + credito.tasa + "%</td>";
             contenido += "<td>" + credito.plazo + " años</td>";
-            contenido += "<td>" + credito.cuota + "</td>";
+            contenido += "<td>" + credito.cuota.toFixed(2) + "</td>";
             contenido += "</tr>";
         }
     }
